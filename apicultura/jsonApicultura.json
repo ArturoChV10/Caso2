@@ -1,28 +1,13 @@
 {
-    "hora" : 15000, //milisegundos
+    "hora" : 15000,
     "cantTecnicos" : 3,
-    "colmenas" : 
-    [
-        {
-            "name" : "colmena1",
-            "paredesAislamiento" : 170000, //Cada 170 segundos se dañan las paredes
-            "comederos" : 90000, //Cada 90 segundos se dañan los comederos
-            "ventilacion" : 140000, //Cada 140 segundos se daña la ventilación
-            "miel" : 20000 //Cada 20 segundos produce miel
-        },
-        {
-            "name" : "colmena2",
-            "paredesAislamiento" : 100000, 
-            "comederos" : 45000, 
-            "ventilacion" : 200000,
-            "miel" : 10000
-        },
-        {
-            "name" : "colmena3",
-            "paredesAislamiento" : 240000, 
-            "comederos" : 160000, 
-            "ventilacion" : 120000,
-            "miel" : 45000
-        }
-    ]
+    "cantColmenas" : 3,
+    "minTiempoProduccion" : 10000,
+    "maxTiempoProducccion" : 40000,
+    "minTiempoDanoParedes" : 150000,
+    "maxTiempoDanoParedes" : 180000,
+    "minTiempoDanoComederos" : 45000,
+    "maxTiempoDanoComederos" : 160000,
+    "minTiempoDanoVentilacion" : 120000,
+    "maxTiempoDanoVentilacion" : 200000
 }
