@@ -1,0 +1,13 @@
+{
+    "hora" : 15000,
+    "cantTecnicos" : 3,
+    "cantColmenas" : 3,
+    "minTiempoProduccion" : 10000,
+    "maxTiempoProducccion" : 40000,
+    "minTiempoDanoParedes" : 150000,
+    "maxTiempoDanoParedes" : 180000,
+    "minTiempoDanoComederos" : 45000,
+    "maxTiempoDanoComederos" : 160000,
+    "minTiempoDanoVentilacion" : 120000,
+    "maxTiempoDanoVentilacion" : 200000
+}
