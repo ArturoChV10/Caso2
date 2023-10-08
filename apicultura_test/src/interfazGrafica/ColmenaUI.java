@@ -5,6 +5,9 @@ import javax.swing.*;
 import colmena.Colmena;
 
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.ArrayList;
 
 import interfazGrafica.UI2;
@@ -77,13 +80,13 @@ public class ColmenaUI extends JFrame {
 		setTitle("Colmena");
 		setSize(600,500);
 		setResizable(false);
-		
+/*		
 		UI2 instanciaUI = new UI2();
 		
 		ArrayList<Colmena> arrayColmenas = instanciaUI.getArrayColmenas();
 		
 		Colmena objetoClasse = arrayColmenas.get(instanciaUI.getCasillaNumero());
-		
+*/		
 		setLocation(50,60);
 		
 		JLabel paredesAislamiento = new JLabel("Paredes y Aislamiento");
@@ -134,6 +137,15 @@ public class ColmenaUI extends JFrame {
 		getContentPane().add(repararBebederos);
 		getContentPane().add(repararVentilacion);
 		
+        // Agrega un WindowListener para manejar el cierre de la ventana
+        addWindowListener((WindowListener) new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                System.out.println("Hola"); // Imprime "Hola" en la consola al cerrar la ventana
+//                objetoClasse.guardar();
+                dispose(); // Cierra la ventana
+            }
+        });
 		
 	}
 }

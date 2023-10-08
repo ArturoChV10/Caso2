@@ -3,14 +3,13 @@ package colmena;
 import java.awt.Color;
 import java.util.Timer;
 import java.util.TimerTask;
-
-import interfazGrafica.ColmenaUI;
-import jsonLoader.ConfigHive;
-
 import java.util.ArrayList;
 import java.util.Random;
 
+import interfazGrafica.ColmenaUI;
+import jsonLoader.ConfigHive;
 import interfazGrafica.UI2;
+import dataColmena.DatosGlobales;
 
 public class Colmena extends Thread {
 	private ConfigHive Configuracion;
@@ -22,82 +21,69 @@ public class Colmena extends Thread {
 	private int tiempoDañoVentilacion;
 	private int tiempoDañoAislamiento;
 	private int tiempoDañoComederos;
+	private UI2 instanciaUI;
+	private Colmena objetoClasse;
 
 
 	public int getTiempoMiel() {
 		return tiempoMiel;
 	}
 
-
 	public void setTiempoMiel(int tiempoMiel) {
 		this.tiempoMiel = tiempoMiel;
 	}
-	
-	
+		
 	public int getMiel() {
 		return miel;
 	}
-
 
 	public void setMiel(int miel) {
 		this.miel = miel;
 	}
 
-
 	public boolean isEstadoVentilacion() {
 		return estadoVentilacion;
 	}
-
 
 	public void setEstadoVentilacion(boolean estadoVentilacion) {
 		this.estadoVentilacion = estadoVentilacion;
 	}
 
-
 	public boolean isEstadoAislamiento() {
 		return estadoAislamiento;
 	}
-
 
 	public void setEstadoAislamiento(boolean estadoAislamiento) {
 		this.estadoAislamiento = estadoAislamiento;
 	}
 
-
 	public boolean isEstadoComederos() {
 		return estadoComederos;
 	}
-
 
 	public void setEstadoComederos(boolean estadoComederos) {
 		this.estadoComederos = estadoComederos;
 	}
 
-
 	public int getTiempoDañoVentilacion() {
 		return tiempoDañoVentilacion;
 	}
-
 
 	public void setTiempoDañoVentilacion(int tiempoDañoVentilacion) {
 		this.tiempoDañoVentilacion = tiempoDañoVentilacion;
 	}
 
-
 	public int getTiempoDañoAislamiento() {
 		return tiempoDañoAislamiento;
 	}
-
 
 	public void setTiempoDañoAislamiento(int tiempoDañoAislamiento) {
 		this.tiempoDañoAislamiento = tiempoDañoAislamiento;
 	}
 
-
 	public int getTiempoDañoComederos() {
 		return tiempoDañoComederos;
 	}
-
 
 	public void setTiempoDañoComederos(int tiempoDañoComederos) {
 		this.tiempoDañoComederos = tiempoDañoComederos;
@@ -114,7 +100,19 @@ public class Colmena extends Thread {
 	public void repararVentilacion() {
 		this.estadoVentilacion = true;
 	}
-
+	
+	public Colmena getObjetoClasse() {
+		return objetoClasse;
+	}
+/*
+	public void guardar() {
+		int casilla = instanciaUI.getCasillaNumero();
+		ArrayList<Colmena> arrayColmenas = instanciaUI.getArrayColmenas();
+		arrayColmenas.remove(casilla);
+		arrayColmenas.add(casilla, objetoClasse);
+		instanciaUI.setArrayColmenas(arrayColmenas);
+	}
+*/
 
 	//Con este constructor se podrían definir los tiempos de cada cosa si se desease, para esto se definirían en los
 	//parámetros las variables necesarias para poder aplicar this.<nombreDelAtributo> = <valorDelParámetro>
@@ -159,13 +157,18 @@ public class Colmena extends Thread {
 		
 		UI2 instanciaUI = new UI2();
 		
-		ArrayList<Colmena> arrayColmenas = instanciaUI.getArrayColmenas();
+		int casilla = DatosGlobales.getCasillaActual();
 		
-		Colmena objetoClasse = arrayColmenas.get(instanciaUI.getCasillaNumero());
+		ArrayList<Colmena> arrayColmenas = DatosGlobales.getArrayColmenas();
+		
+//		ArrayList<Colmena> arrayColmenas = instanciaUI.getArrayColmenas();
+		
+		Colmena objetoClasse = arrayColmenas.get(casilla);
+		
 		
 		ArrayList<ColmenaUI> arrayColmenasUI = instanciaUI.getArrayColmenasUI();	
 		
-		ColmenaUI interfazDeColmena = arrayColmenasUI.get(instanciaUI.getCasillaNumero());
+		ColmenaUI interfazDeColmena = arrayColmenasUI.get(casilla);
 		interfazDeColmena.setVisible(true);
 		
 		Timer timerMiel = new Timer();
@@ -185,17 +188,18 @@ public class Colmena extends Thread {
 				if(!objetoClasse.isEstadoAislamiento()) {
 					interfazDeColmena.setEstadoParedesText("Dañado");
 				}else {
-					System.out.println("No ha pasado");
+					System.out.println(objetoClasse.isEstadoAislamiento());
+					System.out.println(casilla);
 				}
 				if(!objetoClasse.isEstadoComederos()) {
 					interfazDeColmena.setEstadoComederosText("Dañado");
 				}else {
-					System.out.println("No ha pasado");
+					System.out.println(objetoClasse.isEstadoComederos());
 				}
 				if(!objetoClasse.isEstadoVentilacion()) {
 					interfazDeColmena.setEstadoVentilacionText("Dañado");
 				}else {
-					System.out.println("No ha pasado");
+					System.out.println(objetoClasse.isEstadoVentilacion());
 				}
 				
 			}
@@ -213,11 +217,8 @@ public class Colmena extends Thread {
 					if(cantMiel!=objetoClasse.getMiel()) {
 						System.out.println(objetoClasse.getMiel());
 					}
-					
 				}
-				
 			}
-			
 		};
 		
 		TimerTask aislamiento = new TimerTask() {
@@ -225,8 +226,11 @@ public class Colmena extends Thread {
 			@Override
 			public void run() {
 				objetoClasse.setEstadoAislamiento(false);
-				interfazDeColmena.setEstadoParedesS(false);
+//				interfazDeColmena.setEstadoParedesS(false);
 				System.out.println("El estado del aislamiento es deplorable");
+				arrayColmenas.remove(casilla);
+				arrayColmenas.add(casilla, objetoClasse);
+				DatosGlobales.setArrayColmenas(arrayColmenas);
 			}
 		};
 		
@@ -235,8 +239,11 @@ public class Colmena extends Thread {
 			@Override
 			public void run() {
 				objetoClasse.setEstadoComederos(false);
-				interfazDeColmena.setEstadoBebederosS(false);
+//				interfazDeColmena.setEstadoBebederosS(false);
 				System.out.println("Los comederos han sido dañados");
+				arrayColmenas.remove(casilla);
+				arrayColmenas.add(casilla, objetoClasse);
+				DatosGlobales.setArrayColmenas(arrayColmenas);
 			}
 		};
 		
@@ -245,8 +252,11 @@ public class Colmena extends Thread {
 			@Override
 			public void run() {
 				objetoClasse.setEstadoVentilacion(false);
-				interfazDeColmena.setEstadoVentilacionS(false);
+//				interfazDeColmena.setEstadoVentilacionS(false);
 				System.out.println("Han arrasado con la ventilación");
+				arrayColmenas.remove(casilla);
+				arrayColmenas.add(casilla, objetoClasse);
+				DatosGlobales.setArrayColmenas(arrayColmenas);
 			}
 		};
 		
@@ -254,7 +264,7 @@ public class Colmena extends Thread {
 		timerAislamiento.schedule(aislamiento, objetoClasse.getTiempoDañoAislamiento(), objetoClasse.getTiempoDañoAislamiento());
 		timerComederos.schedule(comederos, objetoClasse.getTiempoDañoComederos(), objetoClasse.getTiempoDañoComederos());
 		timerVentilacion.schedule(ventilacion, objetoClasse.getTiempoDañoVentilacion(), objetoClasse.getTiempoDañoVentilacion());
-		timerComprobacion.schedule(comprobador, 0, 10000);
+		timerComprobacion.schedule(comprobador, 0, 1000);
 	}
 
 }

@@ -1,32 +1,26 @@
 package interfazGrafica;
 
 import javax.swing.*;
-
 import javax.swing.border.*;
 
 import java.awt.*;
-
-import interfazGrafica.ColmenaUI;
-
-import jsonLoader.ConfigHive;
-
+import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.ArrayList;
 
-import colmena.Colmena;
-
-import java.util.Random;
-
-import java.util.Timer;
-
-import java.util.TimerTask;
-
 import reparacion.Tecnico;
+import interfazGrafica.ColmenaUI;
+import jsonLoader.ConfigHive;
+import colmena.Colmena;
+import dataColmena.DatosGlobales;
+
 
 public class UI2 extends JFrame {
 //	private JTextArea textArea;
 //	private JButton button2;
 	private ConfigHive Configuracion;
-	private ArrayList<Colmena> arrayColmenas;
+//	private ArrayList<Colmena> arrayColmenas;
 	private ArrayList<ColmenaUI> arrayColmenasUI;
 	private JComboBox<String> comboBox;
 	private int casillaNumero;
@@ -34,13 +28,21 @@ public class UI2 extends JFrame {
 	public ArrayList<ColmenaUI> getArrayColmenasUI() {
 		return arrayColmenasUI;
 	}
-
+/*
 	public ArrayList<Colmena> getArrayColmenas() {
 		return arrayColmenas;
 	}
-
+*/
 	public int getCasillaNumero() {
 		return casillaNumero;
+	}
+/*
+	public void setArrayColmenas(ArrayList<Colmena> arrayColmenas) {
+		this.arrayColmenas = arrayColmenas;
+	}
+*/
+	public void setArrayColmenasUI(ArrayList<ColmenaUI> arrayColmenasUI) {
+		this.arrayColmenasUI = arrayColmenasUI;
 	}
 
 	public UI2() {
@@ -56,6 +58,8 @@ public class UI2 extends JFrame {
 
         //Establece donde se abrirá la ventana cuando se corra el programa
         setLocation(50, 60);
+        
+        UI2.setDefaultLookAndFeelDecorated(rootPaneCheckingEnabled);
                 
         //Crea un label
         JLabel label = new JLabel("Colmenas de Costa Rica");
@@ -70,7 +74,7 @@ public class UI2 extends JFrame {
         getContentPane().add(label);
         
         comboBox = new JComboBox<>();
-        arrayColmenas = new ArrayList<>();
+        ArrayList<Colmena> arrayColmenas = DatosGlobales.getArrayColmenas();
         arrayColmenasUI = new ArrayList<>();
         
         Configuracion = new ConfigHive();
@@ -145,12 +149,18 @@ public class UI2 extends JFrame {
 	
 	public void visitar() {
 		int casilla = obtener();
+		System.out.println("==================");
+		System.out.println(casilla);
+		System.out.println("==================");
+		ArrayList<Colmena> arrayColmenas = DatosGlobales.getArrayColmenas();
 		Colmena colmena = arrayColmenas.get(casilla);
+		DatosGlobales.setCasillaActual(casilla);
 		colmena.main(null);
 	}
 	public int obtener() {
 		int casillaSeleccionada = comboBox.getSelectedIndex();
 		this.casillaNumero = casillaSeleccionada;
+		System.out.println(casillaSeleccionada);
 		return casillaSeleccionada;
 	}
 }

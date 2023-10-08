@@ -12,7 +12,5 @@ public class MainClass {
 	public static void main(String[] args) {
 				
 		UI2.main(null);
-
 	}
-
 }
