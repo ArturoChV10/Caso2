@@ -165,7 +165,6 @@ public class Colmena extends Thread {
 		
 		Colmena objetoClasse = arrayColmenas.get(casilla);
 		
-		
 		ArrayList<ColmenaUI> arrayColmenasUI = instanciaUI.getArrayColmenasUI();	
 		
 		ColmenaUI interfazDeColmena = arrayColmenasUI.get(casilla);
@@ -190,16 +189,19 @@ public class Colmena extends Thread {
 				}else {
 					System.out.println(objetoClasse.isEstadoAislamiento());
 					System.out.println(casilla);
+					interfazDeColmena.setEstadoParedesText2("Funcionando");
 				}
 				if(!objetoClasse.isEstadoComederos()) {
 					interfazDeColmena.setEstadoComederosText("Dañado");
 				}else {
 					System.out.println(objetoClasse.isEstadoComederos());
+					interfazDeColmena.setEstadoComederosText2("Funcionando");
 				}
 				if(!objetoClasse.isEstadoVentilacion()) {
 					interfazDeColmena.setEstadoVentilacionText("Dañado");
 				}else {
 					System.out.println(objetoClasse.isEstadoVentilacion());
+					interfazDeColmena.setEstadoVentilacionText2("Funcionando");
 				}
 				
 			}

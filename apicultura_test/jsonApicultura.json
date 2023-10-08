@@ -1,6 +1,8 @@
 {
     "hora" : 15000,
-    "cantTecnicos" : 3,
+    "cantTecnicos" : 1,
+    "minTiempoArreglo" : 5000,
+    "maxTiempoArreglo" : 10000,
     "cantColmenas" : 3,
     "minTiempoProduccion" : 10000,
     "maxTiempoProducccion" : 40000,

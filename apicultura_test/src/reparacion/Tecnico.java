@@ -1,7 +1,10 @@
 package reparacion;
 
-public class Tecnico {
+import jsonLoader.ConfigHive;
 
+public class Tecnico {
+	private ConfigHive Configuracion;
+	
 	private boolean estadoTecnico;
 	private int cantidadTecnicos;
 	
@@ -19,6 +22,6 @@ public class Tecnico {
 	}
 	
 	public Tecnico(){
-	
+		
 	}
 }

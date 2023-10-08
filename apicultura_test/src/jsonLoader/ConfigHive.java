@@ -9,6 +9,8 @@ import javax.json.JsonReader;
 public class ConfigHive {
 	private int hora;
 	private int cantidadTecnicos;
+	private int minTiempoReparacion;
+	private int maxTiempoReparacion;
 	private int cantidadColmenas;
 	private int minTiempoMiel;
 	private int maxTiempoMiel;
@@ -35,6 +37,14 @@ public class ConfigHive {
             
             if (jsonparser.containsKey("cantTecnicos")) {
             cantidadTecnicos = jsonparser.getJsonNumber("cantTecnicos").intValue();
+            }
+            
+            if(jsonparser.containsKey("minTiempoArreglo")) {
+            	minTiempoReparacion = jsonparser.getJsonNumber("minTiempoArreglo").intValue();
+            }
+            
+            if(jsonparser.containsKey("maxTiempoArreglo")) {
+            	maxTiempoReparacion = jsonparser.getJsonNumber("maxTiempoArreglo").intValue();
             }
             
             if (jsonparser.containsKey("cantColmenas")) {
@@ -110,6 +120,12 @@ public class ConfigHive {
 	}
 	public int getMaxTiempoVentilacion() {
 		return maxTiempoVentilacion;
+	}
+	public int getMinTiempoReparacion() {
+		return minTiempoReparacion;
+	}
+	public int getMaxTiempoReparacion() {
+		return maxTiempoReparacion;
 	}
 	
 }

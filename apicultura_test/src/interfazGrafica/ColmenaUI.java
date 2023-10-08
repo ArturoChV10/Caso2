@@ -3,14 +3,19 @@ package interfazGrafica;
 import javax.swing.*;
 
 import colmena.Colmena;
+import dataColmena.DatosGlobales;
+import reparacion.Tecnico;
+import interfazGrafica.UI2;
+import jsonLoader.ConfigHive;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.ArrayList;
-
-import interfazGrafica.UI2;
+import java.util.Random;
 
 public class ColmenaUI extends JFrame {
 	private JButton repararParedes;
@@ -23,6 +28,8 @@ public class ColmenaUI extends JFrame {
 	private boolean estadoBebederosS;
 	private boolean estadoVentilacionS;
 	private Colmena objetoClasse;
+	private Tecnico tecnico;
+	private ConfigHive Configuracion;
 	
 	public boolean isEstadoParedesS() {
 		return estadoParedesS;
@@ -61,6 +68,21 @@ public class ColmenaUI extends JFrame {
 	public void setEstadoVentilacionText(String pTexto) {
 		estadoVentilacion.setText(pTexto);
 		repararVentilacion.setBackground(Color.RED);
+	}
+	
+	public void setEstadoParedesText2(String pTexto) {
+		estadoParedes.setText(pTexto);
+		repararParedes.setBackground(null);
+	}
+	
+	public void setEstadoComederosText2(String pTexto) {
+		estadoBebederos.setText(pTexto);
+		repararBebederos.setBackground(null);
+	}
+	
+	public void setEstadoVentilacionText2(String pTexto) {
+		estadoVentilacion.setText(pTexto);
+		repararVentilacion.setBackground(null);
 	}
 	
 	public void repararParedes() {
@@ -126,6 +148,99 @@ public class ColmenaUI extends JFrame {
 		this.estadoBebederosS = true;
 		this.estadoVentilacionS = true;
 */		
+        // Asigna un ActionListener al botón
+        repararParedes.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Coloca el código que deseas ejecutar cuando se presione el botón aquí
+//                JOptionPane.showMessageDialog(null, "¡Botón presionado!");
+                ArrayList<Colmena> arrayColmenas = DatosGlobales.getArrayColmenas();
+                int casilla = DatosGlobales.getCasillaActual();
+                
+                Colmena objetoClasse = arrayColmenas.get(casilla);
+/*                
+                Configuracion = new ConfigHive();
+        		
+        		Random rand = new Random();
+        		
+        		int minTiempoArreglo = Configuracion.getMinTiempoMiel();
+        		int maxTiempoArreglo = Configuracion.getMinTiempoMiel();
+
+        		int tiempoReparacionR = rand.nextInt(maxTiempoArreglo - minTiempoArreglo + 1) + minTiempoArreglo;
+*/                 
+                try {
+//                	tecnico.setCantidadTecnicos(tecnico.getCantidadTecnicos()-1);
+					Thread.sleep(3000);
+//					tecnico.setCantidadTecnicos(tecnico.getCantidadTecnicos()+1);
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+                
+                objetoClasse.setEstadoAislamiento(true);
+            }
+        });
+        
+        repararBebederos.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ArrayList<Colmena> arrayColmenas = DatosGlobales.getArrayColmenas();
+                int casilla = DatosGlobales.getCasillaActual();
+                
+                Colmena objetoClasse = arrayColmenas.get(casilla);
+/*                
+                Configuracion = new ConfigHive();
+        		
+        		Random rand = new Random();
+        		
+        		int minTiempoArreglo = Configuracion.getMinTiempoMiel();
+        		int maxTiempoArreglo = Configuracion.getMinTiempoMiel();
+
+        		int tiempoReparacionR = rand.nextInt(maxTiempoArreglo - minTiempoArreglo + 1) + minTiempoArreglo;
+*/            
+                try {
+//                	tecnico.setCantidadTecnicos(tecnico.getCantidadTecnicos()-1);
+					Thread.sleep(3000);
+//					tecnico.setCantidadTecnicos(tecnico.getCantidadTecnicos()+1);
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+                
+                objetoClasse.setEstadoComederos(true);
+            }
+        });
+        
+        repararVentilacion.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ArrayList<Colmena> arrayColmenas = DatosGlobales.getArrayColmenas();
+                int casilla = DatosGlobales.getCasillaActual();
+                
+                Colmena objetoClasse = arrayColmenas.get(casilla);
+/*                
+                Configuracion = new ConfigHive();
+        		
+        		Random rand = new Random();
+        		
+        		int minTiempoArreglo = Configuracion.getMinTiempoMiel();
+        		int maxTiempoArreglo = Configuracion.getMinTiempoMiel();
+
+        		int tiempoReparacionR = rand.nextInt(maxTiempoArreglo - minTiempoArreglo + 1) + minTiempoArreglo;
+*/                               
+                try {
+//                	tecnico.setCantidadTecnicos(tecnico.getCantidadTecnicos()-1);
+					Thread.sleep(3000);
+//					tecnico.setCantidadTecnicos(tecnico.getCantidadTecnicos()+1);
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+                
+                objetoClasse.setEstadoVentilacion(true);
+            }
+        });
+        
 		getContentPane().add(paredesAislamiento);
 		getContentPane().add(bebederos);
 		getContentPane().add(ventilacion);
@@ -146,6 +261,18 @@ public class ColmenaUI extends JFrame {
                 dispose(); // Cierra la ventana
             }
         });
-		
+/*        
+        repararParedes.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ArrayList<Colmena> arrayColmenas = DatosGlobales.getArrayColmenas();
+                int casilla = DatosGlobales.getCasillaActual();
+                
+                Colmena objetoClasse = arrayColmenas.get(casilla);
+                
+                objetoClasse.setEstadoAislamiento(true);
+            }
+        });
+*/        
 	}
 }

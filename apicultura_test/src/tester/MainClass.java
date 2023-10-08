@@ -1,5 +1,7 @@
 package tester;
 
+import reparacion.Tecnico;
+
 import interfazGrafica.*;
 import colmena.Colmena;
 

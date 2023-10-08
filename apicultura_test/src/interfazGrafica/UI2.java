@@ -83,6 +83,8 @@ public class UI2 extends JFrame {
         
         Tecnico tecnicoColmena = new Tecnico();
         
+        tecnicoColmena.setCantidadTecnicos(Configuracion.getCantidadTecnicos());
+        
         for(int i=0; i < Configuracion.getCantidadColmenas(); i++) {
         	
         	Colmena colmena = new Colmena();
