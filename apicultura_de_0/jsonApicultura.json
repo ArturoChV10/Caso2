@@ -1,0 +1,22 @@
+{
+    "hora" : 2000,
+    "cantTecnicos" : 1,
+    "minTiempoArreglo" : 5000,
+    "maxTiempoArreglo" : 10000,
+    "cantFincas" : 3,
+    "cantColmenasXFinca" : 10,
+    "minTiempoProduccion" : 400000,
+    "maxTiempoProducccion" : 800000,
+    "minTiempoDanoParedes" : 150000,
+    "maxTiempoDanoParedes" : 180000,
+    "minPosibilidadParedes" : 30,
+    "maxPosibilidadParedes" : 50,
+    "minTiempoDanoComederos" : 80000,
+    "maxTiempoDanoComederos" : 160000,
+    "minPosibilidadComederos" : 20,
+    "maxPosibilidadComederos" : 22,
+    "minTiempoDanoVentilacion" : 120000,
+    "maxTiempoDanoVentilacion" : 200000,
+    "minPosibilidadVentilacion" : 40,
+    "maxPosibilidadVentilacion" : 60
+}
