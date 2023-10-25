@@ -15,6 +15,7 @@ import hiveProduction.Colmena;
 import hiveProduction.Finca;
 import hiveProduction.Sector;
 import reparacion.Falla;
+import reparacion.Tecnico;
 
 public class FallaUI {
     public static void main(String[] args) {
@@ -48,10 +49,10 @@ public class FallaUI {
                 if (filaSeleccionada != -1) {
                     int numeroF = (int) table.getValueAt(filaSeleccionada, 0);
                     int ID = (int) table.getValueAt(filaSeleccionada, 1);
-                    String sector = (String) table.getValueAt(filaSeleccionada, 2);
                     String falla = (String) table.getValueAt(filaSeleccionada, 3);
-                    String fecha = (String) table.getValueAt(filaSeleccionada, 4);
-                    JOptionPane.showMessageDialog(frame, "Usted ha seleccionado la falla de la finca numero " + numeroF + ", con el número de ID de colmena " + ID + ", ubicada en el sector de " + sector + ", con una falla de " + falla + " y ocurrido el " + fecha);
+                    JOptionPane.showMessageDialog(frame, "Un momento, la falla será atendida por uno de nuestros técnicos.");
+                    Tecnico tecnico = Tecnico.getInstancia();
+                    tecnico.reparar();
                     FallaUI.repararError(numeroF, ID, falla);
                     FallaUI.quitarError(numeroF, ID, falla);
                     ((DefaultTableModel) table.getModel()).removeRow(filaSeleccionada);

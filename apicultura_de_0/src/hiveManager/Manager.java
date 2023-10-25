@@ -28,13 +28,11 @@ public class Manager {  //Este manager puede ser usado para iniciar todo, como l
 	    
 	    //Considero que puedo hacer una clase que sea configLoader, misma cargará todos estos datos.
 	    
-	    Tecnico tecnicoColmena = new Tecnico(DatosGlobales.getCantidadTecnicos());
-	    
 	    initFincas();
 	    
 	    data.setArrayFincas(arrayFincas);
 	    
-/*	    
+/*
 	    for (int i=0; i < DatosGlobales.getCantidadFincas(); i++) {
 	    	int numero = i + 1;
 	    	Finca nuevaFinca = new Finca(numero);
@@ -42,6 +40,7 @@ public class Manager {  //Este manager puede ser usado para iniciar todo, como l
 	    	arrayFincas.add(nuevaFinca);
 	    }
 */
+	    
 	    ArrayList<Finca> pArrayFincas = data.getArrayFincas();
 	    MainUI main = new MainUI(pArrayFincas);
 	    main.setVisible(true);
@@ -50,7 +49,7 @@ public class Manager {  //Este manager puede ser usado para iniciar todo, como l
 	
 	public void initFincas() {
 		
-		System.out.println("Inció");
+//		System.out.println("Inció");
 		int a = DatosGlobales.getCantidadFincas();
 		System.out.print(a);
 	    for (int i=0; i < DatosGlobales.getCantidadFincas(); i++) {

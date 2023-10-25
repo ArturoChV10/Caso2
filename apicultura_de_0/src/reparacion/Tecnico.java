@@ -1,8 +1,12 @@
 package reparacion;
 
+import java.util.Random;
+
+import dataColmena.DatosGlobales;
 import jsonLoader.ConfigHive;
 
 public class Tecnico {
+	private static Tecnico instancia = null;
 	private ConfigHive Configuracion;
 	
 	private boolean estadoTecnico;
@@ -21,11 +25,40 @@ public class Tecnico {
 		this.cantidadTecnicos = cantidadTecnicos;
 	}
 	
-	public void enviarTecnico() {
-		
+	public static Tecnico getInstancia() {
+		if (instancia == null) {
+			instancia = new Tecnico(DatosGlobales.getCantidadTecnicos());
+		}
+		return instancia;
 	}
 	
-	public Tecnico(int pTecnicos){
+	public void reparar() {
+		if(getCantidadTecnicos() > 0) {
+			cantidadTecnicos--;
+			Random rand = new Random();
+			int minTecnico = DatosGlobales.getMinTiempoReparacion();
+			int maxTecnico = DatosGlobales.getMaxTiempoReparacion();
+			int tiempoReparacion = rand.nextInt(Math.min(minTecnico, maxTecnico), Math.max(minTecnico, maxTecnico));
+			try {
+				Thread.sleep(tiempoReparacion);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			cantidadTecnicos++;
+		} else {
+			try {
+				Thread.sleep(10000);
+				reparar();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+	}
+	
+	Tecnico(int pTecnicos){
 		cantidadTecnicos = pTecnicos;
 		estadoTecnico = true;
 	}

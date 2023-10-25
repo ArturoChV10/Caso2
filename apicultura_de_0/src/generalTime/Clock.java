@@ -1,6 +1,7 @@
 package generalTime;
 
 import dataColmena.DatosGlobales;
+import java.util.Calendar;
 
 public class Clock {
 	private static Clock clock = null;
@@ -11,9 +12,10 @@ public class Clock {
     private int tiempoHora;
     
     public Clock() {
-        dia = 16;
-        mes = 5;
-        ano = 2023;
+    	Calendar calendario = Calendar.getInstance();
+        dia = calendario.get(Calendar.DAY_OF_MONTH);
+        mes = calendario.get(Calendar.MONTH) + 1;
+        ano = calendario.get(Calendar.YEAR);
         horaActual = 0;
         tiempoHora = DatosGlobales.getHora(); // Duración de una hora en milisegundos (aquí, 1000 ms = 1 segundo)
     }

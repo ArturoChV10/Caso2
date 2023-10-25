@@ -47,13 +47,13 @@ public class Colmena {
 		posibilidadAislamiento = pPosibilidadA;
 		tiempoDanoComederos = pTiempoC;
 		posibilidadComederos = pPosibilidadC;
-		System.out.println("Se creó");
+//		System.out.println("Se creó");
 		Colmena.this.iniciarThreads();
 		
 	}
 	
 	public void iniciarThreads() {
-		System.out.println("Aquí también");
+//		System.out.println("Aquí también");
 		this.mComprobador();
 		this.mMiel();
 		this.mAislamiento();
@@ -71,13 +71,14 @@ public class Colmena {
 				System.out.println(a);
 				if(!isEstadoAislamiento()||!isEstadoComederos()||!isEstadoVentilacion()) {
 					estadoGeneral = false;
-					System.out.println(estadoGeneral);
+//					System.out.println(estadoGeneral);
 				}else {
 					if(isEstadoAislamiento()&&isEstadoComederos()&&isEstadoVentilacion()) {
 						estadoGeneral = true;
-						System.out.println(estadoGeneral);
+//						System.out.println(estadoGeneral);
 					}
 				}
+/*
 				if(!estadoAislamiento) {
 //					System.out.println("Estado Aislamiento");
 					System.out.println(estadoAislamiento);
@@ -99,6 +100,7 @@ public class Colmena {
 //					System.out.println("Estado Ventilacion");
 					System.out.println(estadoVentilacion);
 				}
+*/
 				
 			}
 		}, 0, 10000);
@@ -110,16 +112,16 @@ public class Colmena {
 			@Override
 			public void run() {
 				int cantMiel = getMiel();
-				if(!isEstadoAislamiento()||!isEstadoComederos()||!isEstadoVentilacion()) {
-					System.out.println("La producción de miel ha sido detenida, debido a que alguno de los componentes está dañado");
-				}else {
-					int nMiel = cantMiel + 1;
-					setMiel(nMiel);
-/*
-					int a = ID;
-					System.out.print(a );
-*/
-					System.out.println(getMiel());
+				if(cantMiel < 101) {
+					if(!isEstadoAislamiento()||!isEstadoComederos()||!isEstadoVentilacion()) {
+						System.out.println("La producción de miel ha sido detenida, debido a que alguno de los componentes está dañado");
+					}else {
+						int nMiel = cantMiel + 1;
+						setMiel(nMiel);
+						System.out.println(getMiel());
+					}
+				} else {
+					
 				}
 			}
 		}, 0, tiempoMiel);

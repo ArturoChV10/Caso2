@@ -116,11 +116,19 @@ public class MainUI extends JFrame {
 	}
 	
 	private void verFallas() {
-		FallaUI.main(null);
+		try {
+			FallaUI.main(null);
+		} catch (Exception e) {
+	        JOptionPane.showMessageDialog(this, "No han ocurrido fallas.");
+		}
 	}
 	
 	private void verHistorial() {
-		HistorialUI.main(null);
+		try {
+			HistorialUI.main(null);
+		} catch (Exception e) {
+	        JOptionPane.showMessageDialog(this, "Todavía no existe historial por mostrar.");
+		}
 	}
 	
 	private void visitarFinca(Object pObjeto) {

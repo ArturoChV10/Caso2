@@ -24,11 +24,13 @@ public class Finca {
 	
 	public void initColmenas() {
 		DatosGlobales data = DatosGlobales.getInstancia();
-		System.out.println("Llegó");
+//		System.out.println("Llegó");
 		arrayColmenas = new ArrayList<>();
+/*
 		int b = data.getCantidadColmenasXFinca();
 		int a = DatosGlobales.getCantidadColmenasXFinca();
 		System.out.println(b);
+*/
 		for(int i = 0; i < DatosGlobales.getCantidadColmenasXFinca(); i++) {
 			Colmena colmena = crearColmenaRandom();
 //			colmena.iniciarThreads();
@@ -39,7 +41,7 @@ public class Finca {
 	public Colmena crearColmenaRandom() {
 		Random rand = new Random();
 		
-		System.out.println("Creó colmena");
+//		System.out.println("Creó colmena");
 		int numeroFinca = NumeroFinca;
 		int minProduccion = DatosGlobales.getMinProduccion();
 		int maxProduccion = DatosGlobales.getMaxProduccion();
